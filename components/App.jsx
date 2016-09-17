@@ -7,7 +7,6 @@ import Search from './Search';
 import {shows} from '../public/data';
 
 
-
 class App extends React.Component {
   render() {
     return (
