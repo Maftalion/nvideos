@@ -14,3 +14,7 @@ export default class Search extends React.Component {
     )
   }
 }
+
+Search.propTypes = {
+  route: React.Proptypes.object
+};
