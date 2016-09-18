@@ -6,6 +6,8 @@ import Landing from './Landing';
 import Search from './Search';
 import Details from './Details'
 import {shows} from '../public/data';
+import {store} from '../redux/Store';
+import {Provider} from 'react-redux';
 
 
 class App extends React.Component {
@@ -22,13 +24,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router history={hashHistory}>
-        <Route path='/' component={Layout}>
-          <IndexRoute component={Landing} />
-          <Route path='/search' component={Search} shows={shows} />
-          <Route path='/details/:id' component={Details} onEnter={this.assignShow} />
-        </Route>
-      </Router>
+      <Provider store={store}>
+        <Router history={hashHistory}>
+          <Route path='/' component={Layout}>
+            <IndexRoute component={Landing} />
+            <Route path='/search' component={Search} shows={shows} />
+            <Route path='/details/:id' component={Details} onEnter={this.assignShow} />
+          </Route>
+        </Router>
+      </Provider>
     )
   }
 }
