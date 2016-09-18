@@ -1,18 +1,18 @@
 
 import React from 'react';
 import {Link} from 'react-router';
+import {connector} from '../redux/Store'
 
 
-
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.handleSearchTermEvent = this.handleSearchTermEvent.bind(this);
   }
 
   handleSearchTermEvent (event) {
-    this.props.handleSearchTermChange(event.target.value)
+    this.props.setSearchTerm(event.target.value)
   }
 
   render () {
@@ -46,7 +46,9 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  handleSearchTermChange: React.PropTypes.func,
+  setSearchTerm: React.PropTypes.func,
   showSearch: React.PropTypes.bool,
   searchTerm: React.PropTypes.string
 }
+
+export default connector(Header);
