@@ -7,7 +7,9 @@ import {Link} from 'react-router';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
+    this.handleSearchTermEvent = this.handleSearchTermEvent.bind(this);
   }
+
   handleSearchTermEvent (event) {
     this.props.handleSearchTermChange(event.target.value)
   }
@@ -15,12 +17,7 @@ export default class Header extends React.Component {
   render () {
     let utilSpace;
     if (this.props.showSearch) {
-      utilSpace = <input
-        type='text'
-        className='search-input'
-        placeholder='search'
-        value={this.props.searchTerm}
-        onChange={this.handleSearchTermEvent} />
+      utilSpace = <input type='text' className='search-input' placeholder='search' value={this.props.searchTerm} onChange={this.handleSearchTermEvent} />
     } else {
       utilSpace = (
         <h2 className='header-back'>
@@ -43,8 +40,8 @@ export default class Header extends React.Component {
   }
 }
 
-const Header.propTypes = {
-  handleSearchTermChange: React.Proptypes.func,
-  showSearch: React.Proptypes.bool,
-  searchTerm: React.Proptypes.string
+Header.propTypes = {
+  handleSearchTermChange: React.PropTypes.func,
+  showSearch: React.PropTypes.bool,
+  searchTerm: React.PropTypes.string
 }

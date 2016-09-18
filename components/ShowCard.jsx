@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default const ShowCard = (props) => (
+const ShowCard = (props) => (
   <div className='show-card'>
     <img src={`public/img/posters/${props.poster}`} className='show-card-img' />
     <div className='show-card-text'>
@@ -12,6 +12,8 @@ export default const ShowCard = (props) => (
   </div>
 )
 
+
+
 const { string } = React.PropTypes
 
 ShowCard.propTypes = {
@@ -20,3 +22,5 @@ ShowCard.propTypes = {
   year: string.isRequired,
   poster: string.isRequired
 }
+
+export default ShowCard;
