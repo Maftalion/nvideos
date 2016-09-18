@@ -7,6 +7,7 @@ import {Link} from 'react-router';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
+
     this.handleSearchTermEvent = this.handleSearchTermEvent.bind(this);
   }
 
@@ -17,7 +18,11 @@ export default class Header extends React.Component {
   render () {
     let utilSpace;
     if (this.props.showSearch) {
-      utilSpace = <input type='text' className='search-input' placeholder='search' value={this.props.searchTerm} onChange={this.handleSearchTermEvent} />
+      utilSpace = <input type='text'
+        className='search-input'
+        placeholder='search'
+        value={this.props.searchTerm}
+        onChange={this.handleSearchTermEvent} />
     } else {
       utilSpace = (
         <h2 className='header-back'>
