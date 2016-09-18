@@ -23,7 +23,7 @@ class Landing extends React.Component {
   render() {
     return(
       <div className='home-info'>
-        <h1 className='title'>nvideo</h1>
+        <h1 className='title'>nvideos</h1>
         <form onSubmit={this.gotoSearch}>
           <input
             value={this.props.searchTerm}
@@ -32,7 +32,7 @@ class Landing extends React.Component {
             type='text'
             placeholder='Search' />
         </form>
-        <Link to='/search' className='browse-all'>Browse All</Link>
+        <Link to='/search' className='browse-all'>Browse</Link>
       </div>
     )
   }
