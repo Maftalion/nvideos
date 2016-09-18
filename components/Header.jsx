@@ -7,7 +7,6 @@ import {connector} from '../redux/Store'
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    
     this.handleSearchTermEvent = this.handleSearchTermEvent.bind(this);
   }
 
