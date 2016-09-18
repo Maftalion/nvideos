@@ -7,7 +7,7 @@ const Search = (props) => (
   <div className='container'>
     <Header showSearch />
     <div className='shows'>
-      {props.route.shows
+      {props.shows
         .filter((show) => `${show.title} ${show.description}`.toUpperCase().indexOf(props.searchTerm.toUpperCase()) >= 0)
         .map((show) => (
           <ShowCard {...show} key={show.imdbID} />
@@ -17,7 +17,7 @@ const Search = (props) => (
 )
 
 Search.propTypes = {
-  route: React.PropTypes.object,
+  shows: React.PropTypes.arrayOf(React.PropTypes.object),
   searchTerm: React.PropTypes.string
 };
 

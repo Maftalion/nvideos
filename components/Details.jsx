@@ -1,12 +1,16 @@
 import React from 'react';
 import Header from './Header';
+import {connector} from '../redux/Store';
 
 
-
-export default class Details extends React.Component {
+class Details extends React.Component {
+  assignShow(id) {
+    const showArray = props.shows.filter((show) => show.imdbID === id);
+    return showArray[0];
+  }
   render () {
-    const params = this.props.params || {}
-    const { title, description, year, poster, trailer } = params
+    const params = this.props.params || {};
+    const { title, description, year, poster, trailer } = assignShow(props.params.id);
     return (
       <div className='container'>
         <Header />
@@ -29,5 +33,8 @@ export default class Details extends React.Component {
 
 
 Details.propTypes = {
-  params: React.PropTypes.object.isRequired
+  shows: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  params: React.PropTypes.object
 }
+
+export default connector(Details);
