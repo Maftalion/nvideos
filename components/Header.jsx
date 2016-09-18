@@ -26,7 +26,7 @@ class Header extends React.Component {
       utilSpace = (
         <h2 className='header-back'>
           <Link to='/search'>
-            Back
+            ← Back
           </Link>
         </h2>
       )
@@ -35,7 +35,7 @@ class Header extends React.Component {
       <header className='header'>
         <h1 className='brand'>
           <Link to='/' className='brand-link'>
-            nvideo
+            nvideos
           </Link>
         </h1>
         {utilSpace}
