@@ -1,14 +1,46 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {connector} from '../redux/Store';
+import {hashHistory} from 'react-router';
 
 
-const Landing = () => (
-  <div className='home-info'>
-    <h1 className='title'>nvideo</h1>
-    <input className='search' type='text' placeholder='Search' />
-    <Link to='/search' className='browse-all'>Browse All</Link>
-  </div>
-)
+class Landing extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.handleSearchTermEvent = this.handleSearchTermEvent.bind(this);
+    this.gotoSearch = this.gotoSearch.bind(this);
+  }
 
-export default Landing;
+  handleSearchTermEvent(event) {
+    this.props.setSearchTerm(event.target.value);
+  }
+  gotoSearch(event) {
+    hashHistory.push('search');
+    event.preventDefault();
+  }
+
+  render() {
+    return(
+      <div className='home-info'>
+        <h1 className='title'>nvideo</h1>
+        <form onSubmit={this.gotoSearch}>
+          <input
+            value={this.props.searchTerm}
+            onChange={this.handleSearchTermEvent}
+            className='search'
+            type='text'
+            placeholder='Search' />
+        </form>
+        <Link to='/search' className='browse-all'>Browse All</Link>
+      </div>
+    )
+  }
+}
+
+Landing.propTypes = {
+  searchTerm: React.PropTypes.string,
+  setSearchTerm: React.PropTypes.func
+}
+
+export default connector(Landing);
