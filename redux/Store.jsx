@@ -1,10 +1,11 @@
 import {createStore} from 'redux';
 import {connect} from 'react-redux';
-
+import {shows} from '../public/data';
 
 const SET_SEARCH_TERM = 'setSearchTerm';
 const initialState = {
-  searchTerm: ''
+  searchTerm: '',
+  shows
 };
 
 const rootReducer = (state=initialState, action) => {
@@ -24,7 +25,10 @@ const reduceSearchTerm = (state, action) => {
 
 export const store = createStore(rootReducer);
 
-const mapStateToProps = (state) => ({searchTerm: state.searchTerm});
+const mapStateToProps = (state) => ({
+  searchTerm: state.searchTerm,
+  shows: state.shows
+});
 const mapDispatchToProps = (dispatch) => {
   return{
     setSearchTerm(searchTerm) {
