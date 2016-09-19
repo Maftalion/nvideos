@@ -1,15 +1,15 @@
-import {createStore} from 'redux';
-import {connect} from 'react-redux';
-import {shows} from '../public/data';
+const redux = require('redux');
+const reactRedux = require('react-redux');
+const {shows} = require('../public/data');
 
-const SET_SEARCH_TERM = 'setSearchTerm';
+const SET_SEARCH_TERM = 'setSearchTerm'
 const initialState = {
   searchTerm: '',
   shows
 };
 
-const rootReducer = (state=initialState, action) => {
-  switch(action.type) {
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
     case SET_SEARCH_TERM:
       return reduceSearchTerm(state, action);
     default:
@@ -23,18 +23,24 @@ const reduceSearchTerm = (state, action) => {
   return newState;
 };
 
-export const store = createStore(rootReducer);
+const store = redux.createStore(rootReducer, initialState, redux.compose(
+  typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : (f) => f
+));
 
-const mapStateToProps = (state) => ({
-  searchTerm: state.searchTerm,
-  shows: state.shows
-});
+const mapStateToProps = (state) => {
+  return {
+    searchTerm: state.searchTerm,
+    shows: state.shows
+  }
+};
 const mapDispatchToProps = (dispatch) => {
-  return{
-    setSearchTerm(searchTerm) {
+  return {
+    setSearchTerm: (searchTerm) => {
       dispatch({type: SET_SEARCH_TERM, value: searchTerm})
     }
   }
-}
+};
 
-export const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = reactRedux.connect(mapStateToProps, mapDispatchToProps);
+
+module.exports = { connector, store, rootReducer };
