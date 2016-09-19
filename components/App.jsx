@@ -1,32 +1,52 @@
-import React from 'react';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import Layout from './Layout';
-import Landing from './Landing';
-import Search from './Search';
-import Details from './Details'
-import {store} from '../redux/Store';
-import {Provider} from 'react-redux';
+const React = require('react');
+const Layout = require('./Layout');
+const { Router, browserHistory } = require('react-router');
+const { store } = require('../redux/Store');
+const { Provider } = require('react-redux');
 
-const myRoutes = () => (
-  <Route path='/' component={Layout}>
-    <IndexRoute component={Landing} />
-    <Route path='/search' component={Search} />
-    <Route path='/details/:id' component={Details} />
-  </Route>
-);
-
-class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Router history={browserHistory}>
-          {myRoutes()}
-        </Router>
-      </Provider>
-    )
+if (typeof module !== 'undefined' && module.require) {
+  if (typeof require.ensure === 'undefined') {
+    require.ensure = require('node-ensure');
   }
+}
+
+const rootRoute = {
+  component: Layout,
+  path: '/',
+  indexRoute: {
+    getComponent (location, cb) {
+      require.ensure([], () => {
+        cb(null, require('./Landing'))
+      })
+    }
+  },
+  childRoutes: [
+    {
+      path: 'search',
+      getComponent (location, cb) {
+        require.ensure([], () => {
+          cb(null, require('./Search'))
+        })
+      }
+    },
+    {
+      path: 'details/:id',
+      getComponent (location, cb) {
+        require.ensure([], () => {
+          cb(null, require('./Details'))
+        })
+      }
+    }
+  ]
 };
 
-App.Routes = myRoutes;
+const App = () =>(
+  <Provider store={store}>
+    <Router history={browserHistory} routes={rootRoute} />
+  </Provider>
+);
 
-export default App;
+App.Routes = rootRoute;
+App.History = browserHistory;
+
+module.exports = App;
