@@ -1,2 +1,2 @@
 # nvideos
-React/Redux Netflix Video Searcher
+React/Redux Video Searcher using server-side rendering
