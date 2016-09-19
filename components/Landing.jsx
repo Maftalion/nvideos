@@ -25,7 +25,7 @@ class Landing extends React.Component {
         <form onSubmit={this.gotoSearch}>
           <input value={this.props.searchTerm} onChange={this.handleSearchTermEvent} className='search' type='text' placeholder='Search' />
         </form>
-        <Link to='/search' className='browse-all'> or Browse All</Link>
+        <Link to='/search' className='browse-all'>Browse</Link>
       </div>
     )
   }

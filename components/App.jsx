@@ -1,8 +1,8 @@
 const React = require('react');
 const Layout = require('./Layout');
-const { Router, browserHistory } = require('react-router');
-const { store } = require('../redux/Store');
-const { Provider } = require('react-redux');
+const {Router, browserHistory} = require('react-router');
+const {store} = require('../redux/Store');
+const {Provider} = require('react-redux');
 
 if (typeof module !== 'undefined' && module.require) {
   if (typeof require.ensure === 'undefined') {
