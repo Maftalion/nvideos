@@ -40,7 +40,7 @@ class Header extends React.Component{
 Header.propTypes = {
   setSearchTerm: React.PropTypes.func,
   showSearch: React.PropTypes.bool,
-  searchTerm: React.PropTypes.tring
+  searchTerm: React.PropTypes.string
 }
 
 module.exports = connector(Header);
