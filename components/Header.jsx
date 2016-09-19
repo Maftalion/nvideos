@@ -1,27 +1,20 @@
+const React = require('react');
+const {Link} = require('react-router');
+const {connector} = require('../redux/Store');
 
-import React from 'react';
-import {Link} from 'react-router';
-import {connector} from '../redux/Store'
-
-
-class Header extends React.Component {
+class Header extends React.Component{
   constructor(props) {
     super(props);
     this.handleSearchTermEvent = this.handleSearchTermEvent.bind(this);
   }
-
-  handleSearchTermEvent (event) {
+  handleSearchTermEvent(event) {
     this.props.setSearchTerm(event.target.value)
   }
 
-  render () {
+  render() {
     let utilSpace;
     if (this.props.showSearch) {
-      utilSpace = <input type='text'
-        className='search-input'
-        placeholder='search'
-        value={this.props.searchTerm}
-        onChange={this.handleSearchTermEvent} />
+      utilSpace = <input type='text' className='search-input' placeholder='search' value={this.props.searchTerm} onChange={this.handleSearchTermEvent} />
     } else {
       utilSpace = (
         <h2 className='header-back'>
@@ -35,7 +28,7 @@ class Header extends React.Component {
       <header className='header'>
         <h1 className='brand'>
           <Link to='/' className='brand-link'>
-            nvideos
+            nVideos
           </Link>
         </h1>
         {utilSpace}
@@ -47,7 +40,7 @@ class Header extends React.Component {
 Header.propTypes = {
   setSearchTerm: React.PropTypes.func,
   showSearch: React.PropTypes.bool,
-  searchTerm: React.PropTypes.string
+  searchTerm: React.PropTypes.tring
 }
 
-export default connector(Header);
+module.exports = connector(Header);
