@@ -1,7 +1,7 @@
-import React from 'react';
-import Header from './Header';
-import ShowCard from './ShowCard';
-import {connector} from '../redux/Store'
+const React = require('react');
+const ShowCard = require('./ShowCard');
+const Header = require('./Header');
+const {connector} = require('../redux/Store');
 
 const Search = (props) => (
   <div className='container'>
@@ -14,11 +14,12 @@ const Search = (props) => (
       ))}
     </div>
   </div>
-)
+);
+
 
 Search.propTypes = {
   shows: React.PropTypes.arrayOf(React.PropTypes.object),
   searchTerm: React.PropTypes.string
 };
 
-export default connector(Search);
+module.exports = connector(Search);
