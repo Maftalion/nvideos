@@ -1,6 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router';
-
+const React = require('react');
+const {Link} = require('react-router');
 
 const ShowCard = (props) => (
   <Link to={`/details/${props.imdbID}`}>
@@ -13,17 +12,16 @@ const ShowCard = (props) => (
       </div>
     </div>
   </Link>
-)
+);
 
-
-
-const { string } = React.PropTypes
+const { string } = React.PropTypes;
 
 ShowCard.propTypes = {
   title: string.isRequired,
   description: string.isRequired,
   year: string.isRequired,
-  poster: string.isRequired
-}
+  poster: string.isRequired,
+  imdbID: string.isRequired
+};
 
-export default ShowCard;
+module.exports = ShowCard;
